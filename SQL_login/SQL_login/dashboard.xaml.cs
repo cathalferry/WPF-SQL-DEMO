@@ -21,7 +21,13 @@ namespace SQL_login
     {
         public dashboard()
         {
+            button.Visibility = Visibility.Collapse;
             InitializeComponent();
+        }
+        
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
