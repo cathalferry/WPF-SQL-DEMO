@@ -20,11 +20,23 @@ namespace SQL_login
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<User> userList = new List<User>();  //new list of users 
+        myDatabaseEntities dbentities = new myDatabaseEntities();  //new instance of DB
+
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+        }
+        private void mtdLoadUsers()  //preload user list on 'Window loaded' at runtime
+        {
+            userList.Clear();//clear list pre reload
+            foreach (var user in dbentities.Users)
+            {
+                userList.Add(user);
+            }
+
+        }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
