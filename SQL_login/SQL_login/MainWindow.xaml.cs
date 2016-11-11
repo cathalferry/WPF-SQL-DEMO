@@ -31,7 +31,7 @@ namespace SQL_login
         private void mtdLoadUsers()  //preload user list on 'Window loaded' at runtime
         {
             userList.Clear();//clear list pre reload
-            foreach (var user in dbentities.Users)
+            foreach (var user in dbentities.Users) //fill list 'UserList' with user data from DB
             {
                 userList.Add(user);
             }
@@ -39,9 +39,32 @@ namespace SQL_login
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            User userDetails = new User();
+            string currentuser = tbxUser.Text.Trim();//removing spaces with trim  get user detials
+            string curentpassword = tbxPassword.Password; //use password box //get password
+            userDetails = mtdGetUserDetails(currentuser, curentpassword);//check if exist
+            if(userDetails.AccessLeve>0)
+            {
+                lblError.Content = "OK";
+            }
+            else
+            {
+                lblError.Content="ented an invalid username or password";
+            }
         }
-
+        private User mtdGetUserDetails(string username, string password)
+        {
+            User UserDetails = new SQL_login.User();
+            foreach (var user in userList)
+            {
+                if(username==user.UserID && password==user.Password)
+                {
+                    UserDetails = user;
+                }
+              
+            }
+            return UserDetails;
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -50,6 +73,7 @@ namespace SQL_login
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
         }
     }
 }

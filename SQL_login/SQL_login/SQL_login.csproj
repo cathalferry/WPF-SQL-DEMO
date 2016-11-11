@@ -84,6 +84,9 @@
     <Compile Include="Building.cs">
       <DependentUpon>myDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="dashboard.xaml.cs">
+      <DependentUpon>dashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="myDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +95,10 @@
     <Compile Include="User.cs">
       <DependentUpon>myDataModel.tt</DependentUpon>
     </Compile>
+    <Page Include="dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
